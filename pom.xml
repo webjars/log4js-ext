@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <packaging>jar</packaging>
+    <groupId>org.webjars</groupId>
+    <artifactId>log4js-ext</artifactId>
+    <version>2.0</version>
+    <name>log4js-ext</name>
+    <description>WebJar for log4js-ext</description>
+    <url>http://webjars.org</url>
+
+    <licenses>
+        <license>
+            <name>GPLv3</name>
+            <url>http://www.gnu.org/copyleft/gpl.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>http://github.com/webjars/log4js-ext</url>
+        <connection>scm:git:https://github.com/webjars/log4js-ext.git</connection>
+        <developerConnection>scm:git:https://github.com/webjars/log4js-ext.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>morankenn</id>
+            <name>Kenneth Moran</name>
+            <email>morankenn@gmail.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <upstream.version>2.0</upstream.version>
+        <upstream.directory>files</upstream.directory>
+        <upstream.file>log4js-ext.2.0.zip</upstream.file>
+        <upstream.url>https://log4js-ext.googlecode.com/files</upstream.url>
+        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}
+        </destDir>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>1.0-beta-4</version>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>download-single</goal>
+                        </goals>
+                        <configuration>
+                            <url>${upstream.url}</url>
+                            <fromFile>${upstream.file}</fromFile>
+                            <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>1</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="unzip log4js-ext.zip"/>
+                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${destDir}">
+                                </unzip>
+                                <echo message="log4js-ext.zip unzip done"/>
+                            </target>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>2</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="unzip log4js-ext-source-javascript-2.0.zip"/>
+                                <unzip src="${project.build.directory}/classes/META-INF/resources/webjars/log4js-ext/2.0/log4js-ext-source-javascript-2.0.zip"
+                                       dest="${destDir}">
+                                </unzip>
+                                <echo message="log4js-ext-source-javascript-2.0.zip unzip done"/>
+                            </target>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>3</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <delete>
+                                    <fileset
+                                            dir="${project.build.directory}/classes/META-INF/resources/webjars/log4js-ext/2.0/"
+                                            includes="log4js-ext-source-javascript-2.0.zip"/>
+                                </delete>
+                                <delete>
+                                    <fileset
+                                            dir="${project.build.directory}/classes/META-INF/resources/webjars/log4js-ext/2.0/"
+                                            includes="**/*.jar"/>
+                                </delete>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.3.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
