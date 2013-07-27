@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -12,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>log4js-ext</artifactId>
-    <version>2.0-SNAPSHOT</version>
+    <version>2.0</version>
     <name>log4js-ext</name>
     <description>WebJar for log4js-ext</description>
     <url>http://webjars.org</url>
@@ -29,7 +28,7 @@
         <url>http://github.com/webjars/log4js-ext</url>
         <connection>scm:git:https://github.com/webjars/log4js-ext.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/log4js-ext.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>log4js-ext-2.0</tag>
     </scm>
 
     <developers>
@@ -82,10 +81,10 @@
                         </goals>
                         <configuration>
                             <target>
-                                <echo message="unzip log4js-ext.zip"/>
+                                <echo message="unzip log4js-ext.zip" />
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${destDir}">
                                 </unzip>
-                                <echo message="log4js-ext.zip unzip done"/>
+                                <echo message="log4js-ext.zip unzip done" />
                             </target>
                         </configuration>
                     </execution>
@@ -98,11 +97,10 @@
                         </goals>
                         <configuration>
                             <target>
-                                <echo message="unzip log4js-ext-source-javascript-2.0.zip"/>
-                                <unzip src="${project.build.directory}/classes/META-INF/resources/webjars/log4js-ext/2.0/log4js-ext-source-javascript-2.0.zip"
-                                       dest="${destDir}">
+                                <echo message="unzip log4js-ext-source-javascript-2.0.zip" />
+                                <unzip src="${project.build.directory}/classes/META-INF/resources/webjars/log4js-ext/2.0/log4js-ext-source-javascript-2.0.zip" dest="${destDir}">
                                 </unzip>
-                                <echo message="log4js-ext-source-javascript-2.0.zip unzip done"/>
+                                <echo message="log4js-ext-source-javascript-2.0.zip unzip done" />
                             </target>
                         </configuration>
                     </execution>
@@ -116,14 +114,10 @@
                         <configuration>
                             <target>
                                 <delete>
-                                    <fileset
-                                            dir="${project.build.directory}/classes/META-INF/resources/webjars/log4js-ext/2.0/"
-                                            includes="log4js-ext-source-javascript-2.0.zip"/>
+                                    <fileset dir="${project.build.directory}/classes/META-INF/resources/webjars/log4js-ext/2.0/" includes="log4js-ext-source-javascript-2.0.zip" />
                                 </delete>
                                 <delete>
-                                    <fileset
-                                            dir="${project.build.directory}/classes/META-INF/resources/webjars/log4js-ext/2.0/"
-                                            includes="**/*.jar"/>
+                                    <fileset dir="${project.build.directory}/classes/META-INF/resources/webjars/log4js-ext/2.0/" includes="**/*.jar" />
                                 </delete>
                             </target>
                         </configuration>
